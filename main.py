@@ -98,24 +98,166 @@ def getPredictionHeartDisease():
             test_data_accuracy = accuracy_score(X_test_prediction, Y_test)
             print("La precisión de los datos de prueba : ", test_data_accuracy)
 
-            #
             # Sistema de predicción de edificios
             # Valores de características de entrada
 
-            age = int(request.form['age'])
-            gender = int(request.form['gender'])
-            chestPain = int(request.form['chestPain'])
-            trestbps = int(request.form['trestbps'])
-            chol = int(request.form['chol'])
-            fbs = int(request.form['fbs'])
-            restecg = int(request.form['restecg'])
-            thalach = int(request.form['thalach'])
-            exang = int(request.form['exang'])
-            oldpeak = int(request.form['oldpeak'])
-            slope = int(request.form['slope'])
-            ca = int(request.form['ca'])
-            thal = int(request.form['thal'])
+            # Validación parametro forme parte del request
+            if 'age' not in request.form:
+                resp = jsonify({'message': 'No age part in the request.form', 'status': 400})
+                resp.status_code = 400
+                return resp
+        
+            if 'gender' not in request.form:
+                resp = jsonify({'message': 'No gender part in the request.form', 'status': 400})
+                resp.status_code = 400
+                return resp
+            
+            if 'chestPain' not in request.form:
+                resp = jsonify({'message': 'No chestPain part in the request.form', 'status': 400})
+                resp.status_code = 400
+                return resp
+            
+            if 'trestbps' not in request.form:
+                resp = jsonify({'message': 'No trestbps part in the request.form', 'status': 400})
+                resp.status_code = 400
+                return resp
+            
+            if 'chol' not in request.form:
+                resp = jsonify({'message': 'No chol part in the request.form', 'status': 400})
+                resp.status_code = 400
+                return resp
+            
+            if 'fbs' not in request.form:
+                resp = jsonify({'message': 'No fbs part in the request.form', 'status': 400})
+                resp.status_code = 400
+                return resp
+            
+            if 'restecg' not in request.form:
+                resp = jsonify({'message': 'No restecg part in the request.form', 'status': 400})
+                resp.status_code = 400
+                return resp
+            
+            if 'thalach' not in request.form:
+                resp = jsonify({'message': 'No thalach part in the request.form', 'status': 400})
+                resp.status_code = 400
+                return resp
+            
+            if 'exang' not in request.form:
+                resp = jsonify({'message': 'No exang part in the request.form', 'status': 400})
+                resp.status_code = 400
+                return resp
+            
+            if 'oldpeak' not in request.form:
+                resp = jsonify({'message': 'No oldpeak part in the request.form', 'status': 400})
+                resp.status_code = 400
+                return resp
+            
+            if 'slope' not in request.form:
+                resp = jsonify({'message': 'No slope part in the request.form', 'status': 400})
+                resp.status_code = 400
+                return resp
+            
+            if 'ca' not in request.form:
+                resp = jsonify({'message': 'No ca part in the request.form', 'status': 400})
+                resp.status_code = 400
+                return resp
+            
+            if 'thal' not in request.form:
+                resp = jsonify({'message': 'No thal part in the request.form', 'status': 400})
+                resp.status_code = 400
+                return resp
+            
+            # Validación de campos nulos
+            if request.form['age'] == '':
+                resp = jsonify({'message': 'Param Age is required', 'status': 400})
+                resp.status_code = 400
+                return resp
+            else:
+                age = int(request.form['age'])
 
+            if request.form['gender'] == '':
+                resp = jsonify({'message': 'Param Gender is required', 'status': 400})
+                resp.status_code = 400
+                return resp
+            else:
+                gender = int(request.form['gender'])
+            
+            if request.form['chestPain'] == '':
+                resp = jsonify({'message': 'Param chestPain is required', 'status': 400})
+                resp.status_code = 400
+                return resp
+            else:
+                chestPain = int(request.form['chestPain'])
+            
+            if request.form['trestbps'] == '':
+                resp = jsonify({'message': 'Param trestbps is required', 'status': 400})
+                resp.status_code = 400
+                return resp
+            else:
+                trestbps = int(request.form['trestbps'])
+            
+            if request.form['chol'] == '':
+                resp = jsonify({'message': 'Param chol is required', 'status': 400})
+                resp.status_code = 400
+                return resp
+            else:
+                chol = int(request.form['chol'])
+            
+            if request.form['fbs'] == '':
+                resp = jsonify({'message': 'Param fbs is required', 'status': 400})
+                resp.status_code = 400
+                return resp
+            else:
+                fbs = int(request.form['fbs'])
+            
+            if request.form['restecg'] == '':
+                resp = jsonify({'message': 'Param restecg is required', 'status': 400})
+                resp.status_code = 400
+                return resp
+            else:
+                restecg = int(request.form['restecg'])
+            
+            if request.form['thalach'] == '':
+                resp = jsonify({'message': 'Param thalach is required', 'status': 400})
+                resp.status_code = 400
+                return resp
+            else:
+                thalach = int(request.form['thalach'])
+            
+            if request.form['exang'] == '':
+                resp = jsonify({'message': 'Param exang is required', 'status': 400})
+                resp.status_code = 400
+                return resp
+            else:
+                exang = int(request.form['exang'])
+            
+            if request.form['oldpeak'] == '':
+                resp = jsonify({'message': 'Param oldpeak is required', 'status': 400})
+                resp.status_code = 400
+                return resp
+            else:
+                oldpeak = int(request.form['oldpeak'])
+            
+            if request.form['slope'] == '':
+                resp = jsonify({'message': 'Param slope is required', 'status': 400})
+                resp.status_code = 400
+                return resp
+            else:
+                slope = int(request.form['slope'])
+            
+            if request.form['ca'] == '':
+                resp = jsonify({'message': 'Param ca is required', 'status': 400})
+                resp.status_code = 400
+                return resp
+            else:
+                ca = int(request.form['ca'])
+            
+            if request.form['thal'] == '':
+                resp = jsonify({'message': 'Param thal is required', 'status': 400})
+                resp.status_code = 400
+                return resp
+            else:
+                thal = int(request.form['thal'])
 
             # años, genero, cp, trestbps, colesterol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal
             #  35     1      0     136       315       0     1        125     1       2        1     0    1
